@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="粤策哨：粤东西北县域强村公司与合作社帮扶项目申报前自查辅助工具（静态演示版）。输入项目描述，查看四段式申报前自查报告。">
+  <title>粤策哨 · 申报前自查辅助工具（静态演示版）</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-seal" aria-hidden="true"><span>粤</span><span>策</span><span>哨</span></span>
+        <div class="brand-text">
+          <p class="brand-name">粤策哨</p>
+          <p class="brand-sub">县域强村公司与合作社 · 申报前自查辅助工具</p>
+        </div>
+      </div>
+      <span class="brand-tag">静态演示版 · 预置案例</span>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ① 首页：一句话定位 + 输入域 + 开始体检 -->
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="hero-kicker">帮你在报项目之前，先查一遍政策红线</p>
+      <h1 id="hero-title" class="hero-title">报项目之前，<br>先做一次<span class="hero-mark">申报前体检</span>。</h1>
+      <p class="hero-sub">把帮扶项目描述粘贴到下面的输入框，点击「开始体检」，即可查看四段式自查报告：<strong>① 适用政策清单</strong> → <strong>② 负面清单命中提示</strong> → <strong>③ 材料缺项清单</strong> → <strong>④ 修改建议</strong>。</p>
+
+      <form id="check-form" class="check-form" novalidate>
+        <div class="field">
+          <label for="project-input">项目描述</label>
+          <textarea id="project-input" rows="7"
+            placeholder="例如：我是某县某镇某村人居环境整治项目的申报人。我村常住人口约1200人……（也可以点击下方预置案例，一键填入）"></textarea>
+          <p class="char-count" id="char-count" aria-live="polite">0 字</p>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="check-btn">开始体检</button>
+          <button type="button" class="btn btn-ghost" id="clear-btn">清空</button>
+        </div>
+        <p class="form-hint">本页面为纯前端静态演示：内容不出本机、不上传任何数据；体检结果来自下方预置案例的静态报告。</p>
+      </form>
+    </section>
+
+    <!-- ② 预置案例 -->
+    <section class="presets" aria-labelledby="presets-title">
+      <h2 id="presets-title" class="section-title">预置案例（点击即可填入）</h2>
+      <p class="section-sub">三个案例均改编自审计公告真实条目（案例标注表），点击卡片会把完整项目描述填入上方输入框。</p>
+      <ul class="case-list" id="case-list"><!-- 由 js/app.js 渲染 --></ul>
+    </section>
+
+    <!-- 未命中提示 -->
+    <section class="notice" id="notice" hidden>
+      <div class="notice-card" role="status">
+        <p class="notice-title">演示版暂未内置这份项目描述对应的报告</p>
+        <p>本静态演示版仅内置 <strong>3 个预置案例</strong>的四段式体检报告。请点击上方任一预置案例卡片填入描述后再点「开始体检」，即可查看对应的静态报告。</p>
+        <button type="button" class="btn btn-ghost" id="notice-back">回到预置案例</button>
+      </div>
+    </section>
+
+    <!-- ③ 四段式体检报告 -->
+    <section class="report-wrap" id="report-wrap" hidden aria-live="polite" aria-label="体检报告">
+      <div id="report-body"><!-- 由 js/app.js 渲染 --></div>
+    </section>
+
+    <!-- 数据来源说明 -->
+    <section class="data-notes" aria-labelledby="notes-title">
+      <h2 id="notes-title" class="section-title">演示数据来源说明</h2>
+      <div class="notes-card">
+        <p>本页引用的全部<strong>文号、条款号与日期</strong>，均来自团队知识库已核验条目，未作任何编造：</p>
+        <ul>
+          <li>文号、发布日期、效力状态：<code>04_政策语料/00_工作区/registry.json</code> 与 <code>04_政策语料/政策文件清单-初稿.csv</code>；</li>
+          <li>条款原文摘录：<code>04_政策语料/03_清洗文本/</code> 对应文件（逐字摘录）；</li>
+          <li>预置案例：<code>04_政策语料/审计公告/案例标注表.csv</code> 的「改编后申报场景描述」列（案例 C139、C83、C02）；</li>
+          <li>标注习惯：原文载明施行条款的，按原文标注施行日期；未载明施行条款的，按 registry「发布日期」标注印发日期，不作推断。</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 免责声明：每页固定展示 -->
+  <footer class="disclaimer-bar">
+    <div class="disclaimer-inner">
+      <p><strong>免责声明：</strong>本报告仅为申报前自查辅助参考，不构成合规判定，请以政策法规原文及主管部门意见为准。</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
