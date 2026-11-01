@@ -46,7 +46,7 @@ yueceshao/
 ├── gen/                 # 生成、标记式引用渲染、确定性校验器
 ├── eval/                # 评测脚本；全部消融开关（配置布尔位）集中在此
 ├── app/                 # FastAPI 服务（后置）
-├── web/                 # 静态 demo（预置案例，GitHub Pages 部署）
+├── docs/                # 静态 demo（预置案例，GitHub Pages 部署于本目录）
 ├── tests/               # pytest
 ├── config.example.json  # 配置样例（真实配置不入库）
 └── .env.example         # 环境变量样例（API key 等永不入库）
