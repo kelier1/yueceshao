@@ -131,7 +131,38 @@
     }
     mkMeta("生成方式", "静态预置输出（本页内置，无模型推理）");
     head.appendChild(metaList);
+
+    /* 摘要统计：数字由上方预置数据实时计数得出，不新增任何文案与文号 */
+    const ruleCount = report.s2.filter(function (h) { return h.level === "rule"; }).length;
+    const suspectCount = report.s2.length - ruleCount;
+    const mkStat = function (num, label, sub, cls) {
+      const box = el("div", "stat" + (cls ? " " + cls : ""));
+      box.appendChild(el("span", "stat-num", String(num)));
+      const txt = el("div", "stat-text");
+      txt.appendChild(el("span", "stat-label", label));
+      if (sub) txt.appendChild(el("span", "stat-sub", sub));
+      box.appendChild(txt);
+      return box;
+    };
+    const stats = el("div", "report-stats");
+    stats.appendChild(mkStat(report.s1.length, "件适用政策"));
+    stats.appendChild(mkStat(report.s2.length, "条负面命中",
+      "规则 " + ruleCount + " · 疑似 " + suspectCount, "is-hit"));
+    stats.appendChild(mkStat(report.s3.length, "项材料缺项"));
+    head.appendChild(stats);
+
     doc.appendChild(head);
+
+    /* 段落导航：跳转到报告内对应段落 */
+    const toc = el("nav", "report-toc");
+    toc.setAttribute("aria-label", "报告段落导航");
+    [["sec-1", "① 适用政策清单"], ["sec-2", "② 负面清单命中提示"],
+     ["sec-3", "③ 材料缺项清单"], ["sec-4", "④ 修改建议"]].forEach(function (row) {
+      const link = el("a", null, row[1]);
+      link.href = "#" + row[0];
+      toc.appendChild(link);
+    });
+    doc.appendChild(toc);
 
     if (meta.sourceNote) {
       const noteP = el("p", "sec-note");
@@ -143,6 +174,7 @@
 
     /* 第①段 适用政策清单 */
     const s1 = el("section", "report-sec");
+    s1.id = "sec-1";
     s1.appendChild(el("h3", null, ""));
     s1.querySelector("h3").appendChild(el("span", "sec-no", "①"));
     s1.querySelector("h3").appendChild(document.createTextNode("适用政策清单"));
@@ -177,6 +209,7 @@
 
     /* 第②段 负面清单命中提示 */
     const s2 = el("section", "report-sec");
+    s2.id = "sec-2";
     const s2h = el("h3", null, "");
     s2h.appendChild(el("span", "sec-no", "②"));
     s2h.appendChild(document.createTextNode("负面清单命中提示"));
@@ -215,6 +248,7 @@
 
     /* 第③段 材料缺项清单 */
     const s3 = el("section", "report-sec");
+    s3.id = "sec-3";
     const s3h = el("h3", null, "");
     s3h.appendChild(el("span", "sec-no", "③"));
     s3h.appendChild(document.createTextNode("材料缺项清单"));
@@ -234,6 +268,7 @@
 
     /* 第④段 修改建议 */
     const s4 = el("section", "report-sec");
+    s4.id = "sec-4";
     const s4h = el("h3", null, "");
     s4h.appendChild(el("span", "sec-no", "④"));
     s4h.appendChild(document.createTextNode("修改建议"));

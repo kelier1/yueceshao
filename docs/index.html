@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="粤策哨：粤东西北县域强村公司与合作社帮扶项目申报前自查辅助工具（静态演示版）。输入项目描述，查看四段式申报前自查报告。">
   <title>粤策哨 · 申报前自查辅助工具（静态演示版）</title>
-  <link rel="icon" href="data:,">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23a33327'/%3E%3Ctext x='16' y='23' font-size='18' font-family='serif' font-weight='700' fill='%23fdfbf4' text-anchor='middle'%3E%E7%B2%A4%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -29,7 +29,19 @@
     <section class="hero" aria-labelledby="hero-title">
       <p class="hero-kicker">帮你在报项目之前，先查一遍政策红线</p>
       <h1 id="hero-title" class="hero-title">报项目之前，<br>先做一次<span class="hero-mark">申报前体检</span>。</h1>
-      <p class="hero-sub">把帮扶项目描述粘贴到下面的输入框，点击「开始体检」，即可查看四段式自查报告：<strong>① 适用政策清单</strong> → <strong>② 负面清单命中提示</strong> → <strong>③ 材料缺项清单</strong> → <strong>④ 修改建议</strong>。</p>
+      <p class="hero-sub">用你自己的话描述要申报的帮扶项目——做什么、用哪笔钱、落在哪个村。系统检索现行有效的政策条款、比对负面清单所列违规情形，输出四段式报告：<strong>① 适用政策清单</strong>（含条款时效状态）→ <strong>② 负面清单命中提示</strong>（逐条标注依据文号与条款号）→ <strong>③ 材料缺项清单</strong> → <strong>④ 修改建议</strong>。</p>
+
+      <ol class="flow-steps" aria-label="系统处理流程">
+        <li><span class="step-no" aria-hidden="true">1</span>输入项目描述</li>
+        <li><span class="step-no" aria-hidden="true">2</span>检索现行政策条款</li>
+        <li><span class="step-no" aria-hidden="true">3</span>规则比对与溯源标注</li>
+        <li><span class="step-no" aria-hidden="true">4</span>输出四段报告</li>
+      </ol>
+
+      <p class="demo-status">
+        <span class="demo-dot" aria-hidden="true"></span>
+        当前为 <strong>v0.2 静态演示</strong>：检索管线与规则引擎尚未接入，报告结果取自下方 3 个预置案例；任意项目描述的检索体检能力随管线上线开放。
+      </p>
 
       <form id="check-form" class="check-form" novalidate>
         <div class="field">
@@ -42,12 +54,12 @@
           <button type="submit" class="btn btn-primary" id="check-btn">开始体检</button>
           <button type="button" class="btn btn-ghost" id="clear-btn">清空</button>
         </div>
-        <p class="form-hint">本页面为纯前端静态演示：内容不出本机、不上传任何数据；体检结果来自下方预置案例的静态报告。</p>
+        <p class="form-hint">本页面为纯前端静态演示：内容不出本机、不上传任何数据。检索管线接入前，仅下方预置案例可产出完整报告。</p>
       </form>
     </section>
 
     <!-- ② 预置案例 -->
-    <section class="presets" aria-labelledby="presets-title">
+    <section class="presets" id="presets" aria-labelledby="presets-title">
       <h2 id="presets-title" class="section-title">预置案例（点击即可填入）</h2>
       <p class="section-sub">三个案例均改编自审计公告真实条目（案例标注表），点击卡片会把完整项目描述填入上方输入框。</p>
       <ul class="case-list" id="case-list"><!-- 由 js/app.js 渲染 --></ul>
@@ -56,8 +68,8 @@
     <!-- 未命中提示 -->
     <section class="notice" id="notice" hidden>
       <div class="notice-card" role="status">
-        <p class="notice-title">演示版暂未内置这份项目描述对应的报告</p>
-        <p>本静态演示版仅内置 <strong>3 个预置案例</strong>的四段式体检报告。请点击上方任一预置案例卡片填入描述后再点「开始体检」，即可查看对应的静态报告。</p>
+        <p class="notice-title">检索管线尚未接入，这份描述暂无对应报告</p>
+        <p>正式版会把你输入的任意项目描述送进政策库检索、比对负面清单规则后生成报告。当前 <strong>v0.2 静态演示</strong>只内置了 <strong>3 个预置案例</strong>的完整报告，请点击任一案例卡片填入描述后再点「开始体检」查看效果。</p>
         <button type="button" class="btn btn-ghost" id="notice-back">回到预置案例</button>
       </div>
     </section>
